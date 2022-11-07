@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 const FilterBar = ({
   genders,
@@ -8,15 +8,21 @@ const FilterBar = ({
   onDateFilter,
 }) => {
   const [filters, setFilters] = useState({
-    name: "",
-    email: "",
-    gender: "",
-    from: "",
-    to: "",
+    name: '',
+    email: '',
+    gender: '',
+    from: '',
+    to: '',
   });
+  // console.log(genders);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [gender, setGender] = useState();
+  const [from, setFrom] = useState('');
+  const [to, setTo] = useState('');
 
-  const handleInput = (field) => (event) => {
-    const { value } = event.target;
+  const handleInput = (field) => (e) => {
+    const { value } = e.target;
 
     setFilters({
       ...filters,
@@ -24,20 +30,27 @@ const FilterBar = ({
     });
 
     switch (field) {
-      case "name":
+      case 'name':
+        setName(value);
         onNameFilter(value);
         break;
-      case "email":
+
+      case 'email':
         onEmailFilter(value);
+        // setEmail(value);
         break;
-      case "gender":
+      case 'gender':
+        // setGender(value);
         onGenderFilter(value);
         break;
-      case "from":
-        onDateFilter(value, "from");
+      case 'from':
+        onDateFilter(value, 'from');
+        // setFrom(value);
         break;
-      case "to":
+      case 'to':
+        // setTo(value);
         break;
+
       default:
         break;
     }
@@ -55,7 +68,7 @@ const FilterBar = ({
           className="form-control"
           id="name"
           value={filters.name}
-          onChange={handleInput("name")}
+          onChange={handleInput('name')}
         />
       </div>
 
@@ -65,7 +78,7 @@ const FilterBar = ({
           type="text"
           className="form-control"
           id="email"
-          onChange={handleInput("email")}
+          onChange={handleInput('email')}
         />
       </div>
 
@@ -74,9 +87,12 @@ const FilterBar = ({
         <select
           className="form-control"
           id="gender"
-          onChange={handleInput("gender")}
+          gender={gender}
+          onChange={handleInput('gender')}
         >
-          <option value="">Select</option>
+          <option value="" hidden>
+            Select
+          </option>
           {genders.map((gender) => (
             <option value={gender} key={gender}>
               {gender}
@@ -91,7 +107,7 @@ const FilterBar = ({
           type="date"
           className="form-control"
           id="startDate"
-          onChange={handleInput("from")}
+          onChange={handleInput('from')}
         />
       </div>
       <div className="col-sm-12 my-2">
@@ -100,7 +116,7 @@ const FilterBar = ({
           type="date"
           className="form-control"
           id="endDate"
-          onChange={handleInput("to")}
+          onChange={handleInput('to')}
         />
       </div>
     </div>

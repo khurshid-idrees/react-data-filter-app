@@ -1,6 +1,6 @@
-import dayjs from "dayjs";
+import dayjs from 'dayjs';
 
-const PersonItem = ({ item }) => {
+const Personitem = ({ item }) => {
   return (
     <div className="col-sm-4">
       <div className="card my-2">
@@ -12,7 +12,7 @@ const PersonItem = ({ item }) => {
           <p className="card-text">{item?.email}</p>
           <p className="card-text">{item?.gender}</p>
           <p className="card-text">
-            {dayjs(item?.date).format("DD MMMM YYYY")}
+            {dayjs(item?.date).format('DD MMMM YYYY')}
           </p>
         </div>
       </div>
@@ -20,4 +20,6 @@ const PersonItem = ({ item }) => {
   );
 };
 
-export default PersonItem;
+export default Personitem;
+
+//ok
